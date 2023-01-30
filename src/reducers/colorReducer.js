@@ -8,10 +8,16 @@ const colorReducer = (state, action) => {
 
     switch (action.type){
         case ADD_COLOR:
-            return {
-                ...state,
-                colors: [...state.colors, action.payload]
+            if (!state.colors.includes(action.payload)) {
+                return {
+                    ...state,
+                    colors: [...state.colors, action.payload]
+                }
             }
+                return {
+                    ...state,
+                    colors: [...state.colors]
+                }
 
         default:
             throw new Error('No case defined')
